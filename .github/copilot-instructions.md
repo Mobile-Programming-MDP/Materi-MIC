@@ -1,41 +1,48 @@
 # Copilot Instructions - Materi MIC (Dart & Flutter Learning)
 
-## Project Overview
+## Project Architecture
 
-This is a learning materials workspace for Dart and Flutter development. The workspace is organized into two main directories:
-- `Dart/` - Pure Dart language exercises and examples with structured learning modules
-- `Flutter/` - Flutter framework projects and tutorials
+This is a **structured learning repository** for Dart and Flutter, following a pedagogical content pattern. The architecture separates learning materials (`main` branch) from solutions (`solution` branch).
 
-### Current Learning Modules
+### Directory Structure
+```
+Dart/
+├── 01-Struktur-Dasar/      # Fundamentals (200 points)
+│   ├── README.md            # Theory: variables, control flow, functions, collections
+│   ├── contoh.dart          # Runnable examples with comprehensive demos
+│   └── latihan.md           # 12 exercises + bonus (point-based grading)
+└── 02-OOP/                  # Object-Oriented Programming (310 points)
+    ├── README.md            # Theory: classes, inheritance, polymorphism, mixins
+    ├── contoh.dart          # Real-world scenarios (e-commerce, media player)
+    └── latihan.md           # 12 OOP exercises (library, banking, restaurant systems)
+Flutter/                     # Coming soon
+```
 
-**Dart Fundamentals:**
-1. **01-Struktur-Dasar** - Basic Dart syntax, variables, control flow, functions, and collections
-   - `README.md` - Comprehensive guide covering all basic concepts
-   - `contoh.dart` - Runnable examples demonstrating each concept
-   - `latihan.md` - 12 progressive exercises with bonus challenges
-   - `jawaban.dart` - Complete solutions with explanations
+### Critical Branch Strategy
+- **`main`**: Teaching materials WITHOUT solutions (README, contoh, latihan only)
+- **`solution`**: Complete materials INCLUDING `jawaban.dart` files
+- **NEVER commit `jawaban.dart` to `main` branch** - this preserves learning integrity
 
-2. **02-OOP** - Object-Oriented Programming concepts in Dart
-   - `README.md` - Complete OOP guide (classes, inheritance, polymorphism, abstraction, mixins, extensions)
-   - `contoh.dart` - Real-world OOP examples including e-commerce simulation
-   - `latihan.md` - 12 OOP exercises + bonus game system (310 total points)
-   - `jawaban.dart` - Detailed solutions demonstrating best practices
+## Developer Workflow
 
-## Development Environment Setup
+### Running Learning Materials
+```bash
+# Execute examples from root directory
+dart run Dart/01-Struktur-Dasar/contoh.dart
+dart run Dart/02-OOP/contoh.dart
 
-### Dart Projects
-- Dart projects should use the standard package structure with `pubspec.yaml`
-- Place source files in `lib/`, tests in `test/`, and examples in `example/`
-- Run Dart code: `dart run <file.dart>`
-- Run tests: `dart test`
+# Switch to solution branch to run/view answers
+git checkout solution
+dart run Dart/01-Struktur-Dasar/jawaban.dart
+git checkout main
+```
 
-### Flutter Projects
-- Flutter projects follow the standard Flutter template structure
-- Main entry point: `lib/main.dart`
-- Assets (images, fonts) go in `assets/` with declarations in `pubspec.yaml`
-- Run app: `flutter run`
-- Run tests: `flutter test`
-- Build for release: `flutter build <platform>`
+### Creating New Modules
+When adding new learning modules (e.g., `03-Async-Programming`):
+1. **On `main` branch**: Create README.md, contoh.dart, latihan.md
+2. **Switch to `solution` branch**: Add jawaban.dart
+3. Follow the established 4-file pattern consistently
+4. Update root README.md with new module in Table of Contents
 
 ## Coding Conventions
 
@@ -48,45 +55,31 @@ This is a learning materials workspace for Dart and Flutter development. The wor
 - Use null safety (`?`, `!`, `??`) appropriately
 - Private members start with underscore `_`
 
-### Flutter Best Practices
-- Separate UI into reusable widgets
-- Use `const` constructors wherever possible for performance
-- Prefer `StatelessWidget` over `StatefulWidget` when state is not needed
-- Extract complex widget trees into separate widget classes
-- Use `BuildContext` appropriately and avoid passing it unnecessarily
+### Exercise Code Patterns
+**Seen in `jawaban.dart` files:**
+```dart
+// Main function orchestrates all exercises
+void main() {
+  print('=== JAWABAN LATIHAN [MODULE NAME] ===\n');
+  print('SOAL 1: [Title]');
+  soal1();
+  print('\n${'=' * 50}');
+  print('SOAL 2: [Title]');
+  soal2();
+  // ... continue for all exercises
+}
 
-## Common Patterns
-
-### Project Initialization
-```bash
-# Create new Dart package
-dart create -t package dart-project-name
-
-# Create new Flutter app
-flutter create flutter-project-name
+// Each exercise in separate function
+void soal1() {
+  // Implementation with clear output
+}
 ```
 
-### Running Learning Materials
-```bash
-# Run example files
-dart run Dart/01-Struktur-Dasar/contoh.dart
-dart run Dart/02-OOP/contoh.dart
-
-# Run solutions
-dart run Dart/01-Struktur-Dasar/jawaban.dart
-dart run Dart/02-OOP/jawaban.dart
-```
-
-### Dependencies Management
-- Add dependencies in `pubspec.yaml` under `dependencies:` or `dev_dependencies:`
-- Run `dart pub get` (Dart) or `flutter pub get` (Flutter) after adding dependencies
-- Keep dependencies up to date with `dart pub upgrade` or `flutter pub upgrade`
-
-### Testing Approach
-- Write unit tests for business logic in `test/`
-- Use `test` package for Dart, `flutter_test` for Flutter
-- Widget tests for Flutter UI components
-- Integration tests in `integration_test/` for end-to-end scenarios
+**Key patterns in solutions:**
+- Comprehensive error handling and validation
+- Edge case coverage (empty lists, division by zero, invalid input)
+- Rich console output with formatting (`===`, visual separators)
+- Demonstrative examples showing multiple use cases per function
 
 ## Learning Structure
 
